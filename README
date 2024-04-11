@@ -12,4 +12,6 @@ File "main": aqui se asignaron las clases para cada una de las  interacciones en
 File "selector": aqui fueron definiendo los selectores para diferentes elementos para la pagina de urban routes
 File "TestUrban": aqui fueron creadas las pruebas para probar diferentes funcionalidades de la pagina de Urban.Routes
 
-para correr las pruevas vamos a entrar al File "TestUrban", clickearemos en current file y posteriormente play
+para correr las pruevas vamos a entrar al File "TestUrban", clickearemos en current file y posteriormente plalay
+
+Para que funcione este test automatizado sin problemas, es necesario incluir la instalación de python3  así como, Selenium, webdriver, pytest, entre otros.

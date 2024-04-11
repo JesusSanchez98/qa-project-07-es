@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-import main
+
 
 # class UrbanRoutesPage
 from_field = (By.ID, 'from')
@@ -21,7 +21,7 @@ button_confirmar = (By.XPATH, "//button[@class='button full' and text() = 'Confi
 #class CreditCard
 metodo_pago = (By.XPATH, "//div[@class= 'pp-button filled']")
 agregar_tarjeta = (By.XPATH, "//div[@class= 'pp-title' and text()= 'Agregar tarjeta']")
-numero_t = (By.ID, 'number')
+numero_tarjeta = (By.ID, 'number')
 codigo = (By.XPATH, "//div[@class='card-code-input']//input[@id= 'code']")
 Atv_btton = (By.XPATH, "//div[@class='pp-buttons']")
 button_agregar = (By.XPATH, "//button[@class='button full' and text()='Agregar']")

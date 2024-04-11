@@ -1,18 +1,12 @@
 
-import main
 import selector
 import data
-from selenium import webdriver
-from selenium.webdriver import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 from time import sleep
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-# no modificar
+
 def retrieve_phone_code(driver) -> str:
     """Este código devuelve un número de confirmación de teléfono y lo devuelve como un string.
     Utilízalo cuando la aplicación espere el código de confirmación para pasarlo a tus pruebas.
@@ -47,10 +41,10 @@ class UrbanRoutesPage:
         self.driver = driver
 
     def set_from(self, from_address):
-        self.driver.find_element(*self.from_field).send_keys(data.address_from)
+        self.driver.find_element(*self.from_field).send_keys(data.ADDRESS_FROM)
 
     def set_to(self, to_address):
-        self.driver.find_element(*self.to_field).send_keys(data.address_to)
+        self.driver.find_element(*self.to_field).send_keys(data.ADDRESS_TO)
 
     def get_from(self):
         return self.driver.find_element(*self.from_field).get_property('value')
@@ -59,8 +53,8 @@ class UrbanRoutesPage:
         return self.driver.find_element(*self.to_field).get_property('value')
 
     def set_route(self, to_address, from_address):
-        self.set_from(data.address_from)
-        self.set_to(data.address_to)
+        self.set_from(data.ADDRESS_FROM)
+        self.set_to(data.ADDRESS_TO)
 
 class Comfort:
     personal = selector.personal
@@ -104,7 +98,7 @@ class Phone:
         self.driver.find_element(*self.button_phone).click()
 
     def phone_box(self, phone_number):
-        self.driver.find_element(*self.phone_num).send_keys(data.phone_number)
+        self.driver.find_element(*self.phone_num).send_keys(data.PHONE_NUMBER)
 
     def get_phone(self):
         return self.driver.find_element(*self.phone_num).get_property('value')
@@ -127,13 +121,13 @@ class Phone:
         self.btton_confirmar()
 
 class CreditCard:
-    metodo_pago = selector.metodo_pago   #metodo_pago
-    agregar_tarjeta = selector.agregar_tarjeta  #agregar_tarjeta
-    numero = selector.numero_t   #numero_tarjeta
-    codigo = selector.codigo           #añadir cogigo
-    Atv_btton = selector.Atv_btton      #activar_agregar
-    button_agregar = selector.button_agregar     #button_agregar
-    button_cerrar = selector.button_cerrar       #button_cerrar
+    metodo_pago = selector.metodo_pago
+    agregar_tarjeta = selector.agregar_tarjeta
+    numero = selector.numero_tarjeta
+    codigo = selector.codigo
+    Atv_btton = selector.Atv_btton
+    button_agregar = selector.button_agregar
+    button_cerrar = selector.button_cerrar
 
     def __init__(self, driver):
         self.driver = driver
@@ -162,10 +156,10 @@ class CreditCard:
     def credit_card(self):
         self.click_met()
         self.add_card()
-        card_number = data.card_number
+        card_number = data.CARD_NUMBER
         self.add_num_card(card_number)
         sleep(1)
-        card_code = data.card_code
+        card_code = data.CARD_CODE
         self.add_code_card(card_code)
         self.click_Atv()
         self.click_aggr()
@@ -187,17 +181,16 @@ class MensajeConductor:
         )
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
-    def send_massage(self,message_for_driver):
-        self.driver.find_element(*self.mensaje_conductor).send_keys(data.message_for_driver)
+    def send_massage(self, message_for_driver):
+        self.driver.find_element(*self.mensaje_conductor).send_keys(data.MESSAGE_FOR_DRIVER)
 
-    def massage(self,message_for_driver):
+    def massage(self, message_for_driver):
         self.send_massage(message_for_driver)
 
         return 'Muéstrame el camino al museo'
 
 class MantasPanuelos:
 
-    #Box = selector.Box
     Box_MP = selector.Box_MP
     Switch = selector.Switch
 

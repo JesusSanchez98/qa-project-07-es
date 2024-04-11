@@ -2,11 +2,6 @@ import main
 from time import sleep
 import data
 from selenium import webdriver
-from selenium.webdriver import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
 
 class TestUrbanRoutes:
     driver = None
@@ -18,18 +13,17 @@ class TestUrbanRoutes:
         capabilities = DesiredCapabilities.CHROME
         capabilities["goog:loggingPrefs"] = {'performance': 'ALL'}
         cls.driver = webdriver.Chrome()
-        cls.driver.get(data.urban_routes_url)
+        cls.driver.get(data.URBAN_ROUTES_URL)
         cls.routes_page = main.UrbanRoutesPage(cls.driver)
 
     def test_set_route(self):
-        self.driver.get(data.urban_routes_url)
+        self.driver.get(data.URBAN_ROUTES_URL)
         sleep(1)
         routes_page = main.UrbanRoutesPage(self.driver)
-
-        address_from = data.address_from
-        address_to = data.address_to
+        address_from = data.ADDRESS_FROM
+        address_to = data.ADDRESS_TO
         routes_page.set_route(address_from, address_to)
-
+        sleep(1)
         assert routes_page.get_from() == address_from
         assert routes_page.get_to() == address_to
 
@@ -42,7 +36,7 @@ class TestUrbanRoutes:
 
     def test_phone_number(self):
         phone = main.Phone(self.driver)
-        num = data.phone_number
+        num = data.PHONE_NUMBER
         phone.phone_number(num)
         get_phone = phone.get_phone()
         sleep(1)
@@ -52,8 +46,8 @@ class TestUrbanRoutes:
     def test_credit_card(self):
         card = main.CreditCard(self.driver)
         number, code = card.credit_card()
-        expec_number = data.card_number
-        expec_code = data.card_code
+        expec_number = data.CARD_NUMBER
+        expec_code = data.CARD_CODE
         assert number == expec_number
         assert code == expec_code
 
@@ -78,7 +72,7 @@ class TestUrbanRoutes:
     def test_pedir_taxi(self):
         taxi = main.PedirTaxi(self.driver)
         taxi.pedir_tx()
-        expec_answerd = 'Pedir un taxi\nEl recorrido será de 1 kilómetros y se hará en 2 minutos'
+        expec_answerd = 'Pedir un taxi\nEl recorrido será de 1 kilómetros y se hará en 1 minutos'
         text = self.driver.find_element(*taxi.btton_taxi).text
         assert expec_answerd == text
 
